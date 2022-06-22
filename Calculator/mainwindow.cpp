@@ -13,6 +13,58 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+long long MainWindow::fact(int N)
+{
+    if(N < 0)
+        return 0;
+    if (N == 0)
+        return 1;
+    else
+        return N * fact(N - 1);
+}
+
+
+QString MainWindow::getLastValue()
+{
+    int lenght = expString.length();
+    if (lenght == 0)
+    {
+        return "";
+    }
+    int indexOfLastSymbol = 0;
+    for (int i = 0; i < lenght; ++i)
+    {
+        if (expString.at(i) == '+' or
+            expString.at(i) == '-' or
+            expString.at(i) == '*' or
+            expString.at(i) == '/')
+        {
+            indexOfLastSymbol = i;
+        }
+    }
+    QString lastValue = "";
+    for (int i = indexOfLastSymbol; i < lenght; ++i)
+    {
+        lastValue += (expString.at(i));
+    }
+    return lastValue;
+}
+
+
+bool MainWindow::valueHasDot(QString lastValue)
+{
+    for (int i = 0; i < lastValue.length(); ++i)
+    {
+        if (lastValue.at(i) == '.')
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 bool MainWindow::tryParseToInt()
 {
     bool ok;
@@ -21,16 +73,6 @@ bool MainWindow::tryParseToInt()
 }
 
 
-long long MainWindow::fact(int N)
-{
-    if (N < 0)
-        return 0;
-    if (N == 0)
-        return 1;
-    else
-        return N * fact(N - 1);
-}
-
 bool MainWindow::tryParseToDouble()
 {
     bool ok;
@@ -38,10 +80,49 @@ bool MainWindow::tryParseToDouble()
     return ok;
 }
 
+
 void MainWindow::readInput()
 {
     expString = ui->expLine->text();
 }
+
+
+bool MainWindow::isFirstSymbol()
+{
+    readInput();
+    if (expString.length() == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+bool MainWindow::symbolCanPePlaced()
+{
+    readInput();
+    QChar latestCharacter = expString.at(expString.length() - 1);
+    switch (latestCharacter.unicode()) {
+    case u'+':
+        return false;
+    case u'-':
+        return false;
+    case u'*':
+        return false;
+    case u'/':
+        return false;
+    case u'.':
+        return false;
+        break;
+    default:
+        return true;
+        break;
+    }
+}
+
 
 void MainWindow::on_facButt_released()
 {
@@ -89,7 +170,7 @@ void MainWindow::on_degreeButt_released()
     if (tryParseToDouble())
     {
         double num = expString.toDouble();
-        if (num < 1.7e+154 and num > -1.7e+154)
+        if (num < 1.7e+154 and num > -1.7e+154 )
         {
             num = qPow(num, 2);
             ui->expLine->setText(QString::number(num));
@@ -105,6 +186,7 @@ void MainWindow::on_degreeButt_released()
     }
     ui->degreeFrame->setStyleSheet(defaultFrameStyle);
 }
+
 
 void MainWindow::on_sqrtButt_released()
 {
@@ -153,41 +235,6 @@ void MainWindow::on_logButt_released()
     ui->logFrame->setStyleSheet(defaultFrameStyle);
 }
 
-bool MainWindow::isFirstSymbol()
-{
-    readInput();
-    if (expString.length() == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-
-bool MainWindow::symbolCanPePlaced()
-{
-    readInput();
-    QChar latestCharacter = expString.at(expString.length() - 1);
-    switch (latestCharacter.unicode()) {
-    case u'+':
-        return false;
-    case u'-':
-        return false;
-    case u'*':
-        return false;
-    case u'/':
-        return false;
-    case u'.':
-        return false;
-        break;
-    default:
-        return true;
-        break;
-    }
-}
 
 void MainWindow::on_piButt_released()
 {
@@ -220,6 +267,81 @@ void MainWindow::on_expButt_released()
         }
     }
     ui->expFrame->setStyleSheet(defaultFrameStyle);
+}
+
+
+void MainWindow::on_sinButt_released()
+{
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qSin(num);
+       ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->sinFrame->setStyleSheet(defaultFrameStyle);
+}
+
+
+void MainWindow::on_cosButt_released()
+{
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qCos(num);
+       ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->cosFrame->setStyleSheet(defaultFrameStyle);
+}
+
+
+void MainWindow::on_tanButt_released()
+{
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qTan(num);
+       ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->tanFrame->setStyleSheet(defaultFrameStyle);
+}
+
+
+void MainWindow::on_cotButt_released()
+{
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        if (num != 0)
+        {
+            num = 1 / qTan(num);
+            ui->expLine->setText(QString::number(num));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Невозможно вычислить котангенс числа");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->cotFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
@@ -269,17 +391,127 @@ void MainWindow::on_divButt_released()
     ui->divFrame->setStyleSheet(defaultFrameStyle);
 }
 
-
-
-
+QList<QString> MainWindow::makeRPN()
+{
+    if (expString.at(0) == '-')
+    {
+        expString = "0" + expString;
+    }
+    int lenght = expString.length();
+    QList<QString> output;
+    QStack<QChar> operators_stack;
+    QString tempValue = "";
+    for (int i = 0; i < lenght; ++i)
+    {
+        if((expString.at(i) >= '0' and
+                expString.at(i) <= '9') or
+                expString.at(i) == '.')
+        {
+            tempValue += expString.at(i);
+        }
+        else if (isOperator(expString.at(i)))
+        {
+            if (tempValue != "")
+            {
+                output.append(tempValue);
+                tempValue = "";
+            }
+            if (operators_stack.count() == 0)
+            {
+                operators_stack.push(expString.at(i));
+            }
+            else
+            {
+                if (getPriority(operators_stack.top()) >= getPriority(expString.at(i)))
+                {
+                    output.append(operators_stack.pop());
+                    operators_stack.push(expString.at(i));
+                }
+                else
+                {
+                    operators_stack.push(expString.at(i));
+                }
+            }
+        }
+    }
+    if (tempValue != "")
+    {
+        output.append(tempValue);
+        tempValue = "";
+    }
+    if (operators_stack.count() != 0)
+    {
+        while (operators_stack.count() != 0)
+        {
+        output.append(operators_stack.pop());
+        }
+    }
+    return output;
+}
 
 void MainWindow::on_equalButt_released()
 {
+    readInput();
+    int lenght = expString.length();
     ui->equalFrame->setStyleSheet(defaultFrameStyle);
+    if (lenght == 0 or !symbolCanPePlaced())
+    {
+        QMessageBox::critical(this, "Ошибка", "Сначала введите выражение");
+        return;
+    }
+    for (int i = 0; i < lenght - 1; ++i)
+    {
+        if (expString.at(i) == '/' and expString.at(i + 1) == '0')
+        {
+            QMessageBox::critical(this, "Ошибка", "Деление на 0 недопустимо");
+            return;
+        }
+    }
+
+    QList<QString> output = makeRPN();
+    QString answer = "1";
+
+    if (answer == "nan" or answer == "inf")
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+        return;
+    }
+    for (int i = 0; i < answer.length(); ++i)
+    {
+        if (answer.at(i) == 'e')
+        {
+            QMessageBox::critical(this, "Ошибка", "Слишком большие числа");
+            return;
+        }
+    }
+    ui->expLine->setText(answer);
 }
 
+bool MainWindow::isOperator(QChar symbol)
+{
+    if (symbol == '+' or symbol == '-' or
+            symbol == '*' or symbol == '/')
+        return true;
+    else
+        return false;
+}
 
-
+int MainWindow::getPriority(QChar op)
+{
+    switch (op.unicode()) {
+    case u'+':
+        return 0;
+    case u'-':
+        return 0;
+    case u'*':
+        return 1;
+    case u'/':
+        return 1;
+    default:
+        return 2;
+        break;
+    }
+}
 
 void MainWindow::on_reverseButt_released()
 {
@@ -308,6 +540,7 @@ void MainWindow::on_clearAllButt_released()
 
 void MainWindow::on_clearButt_released()
 {
+    readInput();
     ui->expLine->backspace();
     ui->clearFrame->setStyleSheet(defaultFrameStyle);
 }
@@ -382,43 +615,6 @@ void MainWindow::on_numButt_0_released()
     ui->numFrame_0->setStyleSheet(defaultFrameStyle);
 }
 
-bool MainWindow::valueHasDot(QString lastValue)
-{
-    for (int i = 0; i < lastValue.length(); ++i)
-    {
-        if (lastValue.at(i) == '.')
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-QString MainWindow::getLastValue()
-{
-    int lenght = expString.length();
-    if (lenght == 0)
-    {
-        return "";
-    }
-    int indexOfLastSymbol = 0;
-    for (int i = 0; i < lenght; ++i)
-    {
-        if (expString.at(i) == '+' or
-            expString.at(i) == '-' or
-            expString.at(i) == '*' or
-            expString.at(i) == '/')
-        {
-            indexOfLastSymbol = i;
-        }
-    }
-    QString lastValue = "";
-    for (int i = indexOfLastSymbol; i < lenght; ++i)
-    {
-        lastValue += (expString.at(i));
-    }
-    return lastValue;
-}
 
 void MainWindow::on_dotButt_released()
 {
@@ -463,7 +659,6 @@ void MainWindow::on_logButt_pressed()
 
 void MainWindow::on_piButt_pressed()
 {
-
     ui->piFrame->setStyleSheet(enginButtonFrameFocusStyle);
 }
 
@@ -473,81 +668,6 @@ void MainWindow::on_expButt_pressed()
     ui->expFrame->setStyleSheet(enginButtonFrameFocusStyle);
 }
 
-
-
-void MainWindow::on_sinButt_released()
-{
-    readInput();
-    if (tryParseToDouble())
-    {
-        double num = expString.toDouble();
-        num = qSin(num);
-        ui->expLine->setText(QString::number(num));
-    }
-    else
-    {
-        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
-    }
-    ui->sinFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_cosButt_released()
-{
-    readInput();
-    if (tryParseToDouble())
-    {
-        double num = expString.toDouble();
-        num = qCos(num);
-        ui->expLine->setText(QString::number(num));
-    }
-    else
-    {
-        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
-    }
-    ui->cosFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_tanButt_released()
-{
-    readInput();
-    if (tryParseToDouble())
-    {
-        double num = expString.toDouble();
-        num = qTan(num);
-        ui->expLine->setText(QString::number(num));
-    }
-    else
-    {
-        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
-    }
-    ui->tanFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_cotButt_released()
-{
-    readInput();
-    if (tryParseToDouble())
-    {
-        double num = expString.toDouble();
-        if (num != 0)
-        {
-            num = 1 / qTan(num);
-            ui->expLine->setText(QString::number(num));
-        }
-        else
-        {
-            QMessageBox::critical(this, "Ошибка", "Невозможно вычислить котангенс числа");
-        }
-    }
-    else
-    {
-        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
-    }
-    ui->cotFrame->setStyleSheet(defaultFrameStyle);
-}
 
 void MainWindow::on_sinButt_pressed()
 {
@@ -571,6 +691,7 @@ void MainWindow::on_cotButt_pressed()
 {
     ui->cotFrame->setStyleSheet(enginButtonFrameFocusStyle);
 }
+
 
 void MainWindow::on_plusButt_pressed()
 {
@@ -616,7 +737,6 @@ void MainWindow::on_clearAllButt_pressed()
 
 void MainWindow::on_clearButt_pressed()
 {
-
     ui->clearFrame->setStyleSheet(clearButtonFrameFocusStyle);
 }
 

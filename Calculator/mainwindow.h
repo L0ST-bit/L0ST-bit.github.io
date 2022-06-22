@@ -20,6 +20,11 @@ public:
     ~MainWindow();
 
 private slots:
+    QList<QString> makeRPN();
+
+    bool isOperator(QChar symbol);
+
+    int getPriority(QChar op);
 
     QString getLastValue();
 
@@ -27,13 +32,13 @@ private slots:
 
     long long fact(int N);
 
-    bool symbolCanPePlaced();
-
-    void readInput();
-
     bool tryParseToDouble();
 
     bool tryParseToInt();
+
+    bool symbolCanPePlaced();
+
+    void readInput();
 
     bool isFirstSymbol();
 
