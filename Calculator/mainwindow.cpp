@@ -46,12 +46,14 @@ void MainWindow::on_logButt_released()
 
 void MainWindow::on_piButt_released()
 {
+    ui->expLine->insert(QString::number(M_PI));
     ui->piFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_expButt_released()
 {
+    ui->expLine->insert(QString::number(M_E));
     ui->expFrame->setStyleSheet(defaultFrameStyle);
 }
 
@@ -82,24 +84,28 @@ void MainWindow::on_cotButt_released()
 
 void MainWindow::on_plusButt_released()
 {
+    ui->expLine->insert("+");
     ui->plusFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_minusButt_released()
 {
+    ui->expLine->insert("-");
     ui->minusFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_multButt_released()
 {
+    ui->expLine->insert("*");
     ui->multFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_divButt_released()
 {
+    ui->expLine->insert("/");
     ui->divFrame->setStyleSheet(defaultFrameStyle);
 }
 
@@ -123,78 +129,91 @@ void MainWindow::on_reverseButt_released()
 
 void MainWindow::on_clearAllButt_released()
 {
+    ui->expLine->clear();
     ui->clearAllFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_clearButt_released()
 {
+    ui->expLine->backspace();
     ui->clearFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_1_released()
 {
+    ui->expLine->insert("1");
     ui->numFrame_1->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_2_released()
 {
+    ui->expLine->insert("2");
     ui->numFrame_2->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_3_released()
 {
+    ui->expLine->insert("3");
     ui->numFrame_3->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_4_released()
 {
+    ui->expLine->insert("4");
     ui->numFrame_4->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_5_released()
 {
+    ui->expLine->insert("5");
     ui->numFrame_5->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_6_released()
 {
+    ui->expLine->insert("6");
     ui->numFrame_6->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_7_released()
 {
+    ui->expLine->insert("7");
     ui->numFrame_7->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_8_released()
 {
+    ui->expLine->insert("8");
     ui->numFrame_8->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_9_released()
 {
+    ui->expLine->insert("9");
     ui->numFrame_9->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_numButt_0_released()
 {
+    ui->expLine->insert("0");
     ui->numFrame_0->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_dotButt_released()
 {
+    ui->expLine->insert(".");
     ui->dotFrame->setStyleSheet(defaultFrameStyle);
 }
 
@@ -231,6 +250,7 @@ void MainWindow::on_logButt_pressed()
 
 void MainWindow::on_piButt_pressed()
 {
+
     ui->piFrame->setStyleSheet(enginButtonFrameFocusStyle);
 }
 
@@ -309,6 +329,7 @@ void MainWindow::on_clearAllButt_pressed()
 
 void MainWindow::on_clearButt_pressed()
 {
+
     ui->clearFrame->setStyleSheet(clearButtonFrameFocusStyle);
 }
 
