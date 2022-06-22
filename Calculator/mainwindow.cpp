@@ -45,30 +45,111 @@ void MainWindow::readInput()
 
 void MainWindow::on_facButt_released()
 {
+    readInput();
+    if (tryParseToInt())
+    {
+        int num = expString.toInt();
+        if (num <= 20)
+        {
+            ui->expLine->setText(QString::number(fact(num)));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Слишком большое число");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
     ui->facFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_perButt_released()
 {
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num /= 100;
+        ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
     ui->perFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_degreeButt_released()
 {
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        if (num < 1.7e+154 and num > -1.7e+154)
+        {
+            num = qPow(num, 2);
+            ui->expLine->setText(QString::number(num));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Слишком большой модуль числа");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
     ui->degreeFrame->setStyleSheet(defaultFrameStyle);
 }
 
-
 void MainWindow::on_sqrtButt_released()
 {
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        if (num < 1.7e+308 and num > 0)
+        {
+            num = qPow(num, 0.5);
+            ui->expLine->setText(QString::number(num));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Слишком большое или отрицательное число");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
     ui->sqrtFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_logButt_released()
 {
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        if (num > 0)
+        {
+            num = qLn(num);
+            ui->expLine->setText(QString::number(num));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Невозможно вычислить логарифм числа <0");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
     ui->logFrame->setStyleSheet(defaultFrameStyle);
 }
 
