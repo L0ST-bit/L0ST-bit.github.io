@@ -22,6 +22,10 @@ public:
 private slots:
     QList<QString> makeRPN();
 
+    double calculateRPN(QList<QString> RPNexp);
+
+    double simpleCalc(double a, double b, QChar op);
+
     bool isOperator(QChar symbol);
 
     int getPriority(QChar op);
