@@ -31,6 +31,10 @@ private slots:
 
     void readInput();
 
+    bool tryParseToDouble();
+
+    bool tryParseToInt();
+
     bool isFirstSymbol();
 
     void on_facButt_pressed();
@@ -155,6 +159,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    QString expString;
 
     QString equalButtonFrameFocusStyle = "QFrame{"
             "border-style: solid;"

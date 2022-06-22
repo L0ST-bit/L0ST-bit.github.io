@@ -13,6 +13,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+bool MainWindow::tryParseToInt()
+{
+    bool ok;
+    expString.toInt(&ok);
+    return ok;
+}
+
+
+bool MainWindow::tryParseToDouble()
+{
+    bool ok;
+    expString.toDouble(&ok);
+    return ok;
+}
+
 void MainWindow::readInput()
 {
     expString = ui->expLine->text();
