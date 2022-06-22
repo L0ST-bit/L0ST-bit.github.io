@@ -13,6 +13,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::readInput()
+{
+    expString = ui->expLine->text();
+}
 
 void MainWindow::on_facButt_released()
 {
@@ -376,29 +380,79 @@ void MainWindow::on_expButt_pressed()
 }
 
 
-void MainWindow::on_sinButt_pressed()
+void MainWindow::on_sinButt_released()
 {
-    ui->sinFrame->setStyleSheet(enginButtonFrameFocusStyle);
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qSin(num);
+        ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->sinFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
-void MainWindow::on_cosButt_pressed()
+void MainWindow::on_cosButt_released()
 {
-    ui->cosFrame->setStyleSheet(enginButtonFrameFocusStyle);
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qCos(num);
+        ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->cosFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
-void MainWindow::on_tanButt_pressed()
+void MainWindow::on_tanButt_released()
 {
-    ui->tanFrame->setStyleSheet(enginButtonFrameFocusStyle);
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = qTan(num);
+        ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->tanFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
-void MainWindow::on_cotButt_pressed()
+void MainWindow::on_cotButt_released()
 {
-    ui->cotFrame->setStyleSheet(enginButtonFrameFocusStyle);
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        if (num != 0)
+        {
+            num = 1 / qTan(num);
+            ui->expLine->setText(QString::number(num));
+        }
+        else
+        {
+            QMessageBox::critical(this, "Ошибка", "Невозможно вычислить котангенс числа");
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+    }
+    ui->cotFrame->setStyleSheet(defaultFrameStyle);
 }
-
 
 void MainWindow::on_plusButt_pressed()
 {
