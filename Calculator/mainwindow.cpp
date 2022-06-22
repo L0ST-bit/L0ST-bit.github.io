@@ -449,6 +449,43 @@ QList<QString> MainWindow::makeRPN()
     return output;
 }
 
+double MainWindow::simpleCalc(double a, double b, QChar op)
+{
+    switch (op.unicode()) {
+    case u'+':
+        return a + b;
+    case u'-':
+        return a - b;
+    case u'*':
+        return a * b;
+    case u'/':
+        return a / b;
+    default:
+        return 0;
+        break;
+    }
+}
+
+double MainWindow::calculateRPN(QList<QString> RPNexp)
+{
+    QStack<double> solutionStack;
+    int expLenght = RPNexp.length();
+    for (int i = 0; i < expLenght; ++i)
+    {
+        if (!isOperator(RPNexp[i].back()))
+        {
+            solutionStack.push(RPNexp[i].toDouble());
+        }
+        else
+        {
+            double res = simpleCalc(solutionStack.pop(),
+                                    solutionStack.pop(), RPNexp[i].back());
+            solutionStack.push(res);
+        }
+    }
+    return solutionStack.pop();
+}
+
 void MainWindow::on_equalButt_released()
 {
     readInput();
@@ -469,7 +506,7 @@ void MainWindow::on_equalButt_released()
     }
 
     QList<QString> output = makeRPN();
-    QString answer = "1";
+    QString answer = QString::number(calculateRPN(output));
 
     if (answer == "nan" or answer == "inf")
     {
