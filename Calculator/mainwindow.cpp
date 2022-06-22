@@ -21,6 +21,16 @@ bool MainWindow::tryParseToInt()
 }
 
 
+long long MainWindow::fact(int N)
+{
+    if (N < 0)
+        return 0;
+    if (N == 0)
+        return 1;
+    else
+        return N * fact(N - 1);
+}
+
 bool MainWindow::tryParseToDouble()
 {
     bool ok;
