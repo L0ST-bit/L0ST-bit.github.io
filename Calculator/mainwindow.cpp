@@ -177,6 +177,18 @@ void MainWindow::on_equalButt_released()
 
 void MainWindow::on_reverseButt_released()
 {
+    readInput();
+    if (tryParseToDouble())
+    {
+        double num = expString.toDouble();
+        num = -num;
+        ui->expLine->setText(QString::number(num));
+    }
+    else
+    {
+        QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
+        return;
+    }
     ui->reverseFrame->setStyleSheet(defaultFrameStyle);
 }
 
