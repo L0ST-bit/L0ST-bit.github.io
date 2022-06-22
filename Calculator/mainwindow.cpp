@@ -117,30 +117,6 @@ void MainWindow::on_expButt_released()
 }
 
 
-void MainWindow::on_sinButt_released()
-{
-    ui->sinFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_cosButt_released()
-{
-    ui->cosFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_tanButt_released()
-{
-    ui->tanFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
-void MainWindow::on_cotButt_released()
-{
-    ui->cotFrame->setStyleSheet(defaultFrameStyle);
-}
-
-
 void MainWindow::on_plusButt_released()
 {
     if (!isFirstSymbol() and symbolCanPePlaced())
