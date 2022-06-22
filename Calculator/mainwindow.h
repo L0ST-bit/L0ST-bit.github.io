@@ -20,6 +20,19 @@ public:
     ~MainWindow();
 
 private slots:
+
+    QString getLastValue();
+
+    bool valueHasDot(QString lastValue);
+
+    long long fact(int N);
+
+    bool symbolCanPePlaced();
+
+    void readInput();
+
+    bool isFirstSymbol();
+
     void on_facButt_pressed();
 
     void on_facButt_released();
