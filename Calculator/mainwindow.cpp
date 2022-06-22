@@ -139,28 +139,47 @@ void MainWindow::on_cotButt_released()
 
 void MainWindow::on_plusButt_released()
 {
-    ui->expLine->insert("+");
+    if (!isFirstSymbol() and symbolCanPePlaced())
+    {
+        ui->expLine->insert("+");
+    }
     ui->plusFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_minusButt_released()
 {
-    ui->expLine->insert("-");
+    if (isFirstSymbol())
+    {
+        ui->expLine->insert("-");
+    }
+    else
+    {
+        if (symbolCanPePlaced())
+        {
+            ui->expLine->insert("-");
+        }
+    }
     ui->minusFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_multButt_released()
 {
-    ui->expLine->insert("*");
+    if (!isFirstSymbol() and symbolCanPePlaced())
+    {
+        ui->expLine->insert("*");
+    }
     ui->multFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_divButt_released()
 {
-    ui->expLine->insert("/");
+    if (!isFirstSymbol() and symbolCanPePlaced())
+    {
+        ui->expLine->insert("/");
+    }
     ui->divFrame->setStyleSheet(defaultFrameStyle);
 }
 
