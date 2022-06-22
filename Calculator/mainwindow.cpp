@@ -383,6 +383,7 @@ void MainWindow::on_expButt_pressed()
 }
 
 
+
 void MainWindow::on_sinButt_released()
 {
     readInput();
@@ -455,6 +456,29 @@ void MainWindow::on_cotButt_released()
         QMessageBox::critical(this, "Ошибка", "Невозможно вычислить");
     }
     ui->cotFrame->setStyleSheet(defaultFrameStyle);
+}
+
+void MainWindow::on_sinButt_pressed()
+{
+    ui->sinFrame->setStyleSheet(enginButtonFrameFocusStyle);
+}
+
+
+void MainWindow::on_cosButt_pressed()
+{
+    ui->cosFrame->setStyleSheet(enginButtonFrameFocusStyle);
+}
+
+
+void MainWindow::on_tanButt_pressed()
+{
+    ui->tanFrame->setStyleSheet(enginButtonFrameFocusStyle);
+}
+
+
+void MainWindow::on_cotButt_pressed()
+{
+    ui->cotFrame->setStyleSheet(enginButtonFrameFocusStyle);
 }
 
 void MainWindow::on_plusButt_pressed()
