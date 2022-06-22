@@ -43,17 +43,72 @@ void MainWindow::on_logButt_released()
     ui->logFrame->setStyleSheet(defaultFrameStyle);
 }
 
+bool MainWindow::isFirstSymbol()
+{
+    readInput();
+    if (expString.length() == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+bool MainWindow::symbolCanPePlaced()
+{
+    readInput();
+    QChar latestCharacter = expString.at(expString.length() - 1);
+    switch (latestCharacter.unicode()) {
+    case u'+':
+        return false;
+    case u'-':
+        return false;
+    case u'*':
+        return false;
+    case u'/':
+        return false;
+    case u'.':
+        return false;
+        break;
+    default:
+        return true;
+        break;
+    }
+}
 
 void MainWindow::on_piButt_released()
 {
-    ui->expLine->insert(QString::number(M_PI));
+    if (isFirstSymbol())
+    {
+        ui->expLine->insert(QString::number(M_PI));
+    }
+    else
+    {
+        if (!symbolCanPePlaced())
+        {
+            ui->expLine->insert(QString::number(M_PI));
+        }
+    }
     ui->piFrame->setStyleSheet(defaultFrameStyle);
 }
 
 
 void MainWindow::on_expButt_released()
 {
-    ui->expLine->insert(QString::number(M_E));
+    if (isFirstSymbol())
+    {
+        ui->expLine->insert(QString::number(M_E));
+    }
+    else
+    {
+        if (!symbolCanPePlaced())
+        {
+            ui->expLine->insert(QString::number(M_E));
+        }
+    }
     ui->expFrame->setStyleSheet(defaultFrameStyle);
 }
 
@@ -210,10 +265,51 @@ void MainWindow::on_numButt_0_released()
     ui->numFrame_0->setStyleSheet(defaultFrameStyle);
 }
 
+bool MainWindow::valueHasDot(QString lastValue)
+{
+    for (int i = 0; i < lastValue.length(); ++i)
+    {
+        if (lastValue.at(i) == '.')
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+QString MainWindow::getLastValue()
+{
+    int lenght = expString.length();
+    if (lenght == 0)
+    {
+        return "";
+    }
+    int indexOfLastSymbol = 0;
+    for (int i = 0; i < lenght; ++i)
+    {
+        if (expString.at(i) == '+' or
+            expString.at(i) == '-' or
+            expString.at(i) == '*' or
+            expString.at(i) == '/')
+        {
+            indexOfLastSymbol = i;
+        }
+    }
+    QString lastValue = "";
+    for (int i = indexOfLastSymbol; i < lenght; ++i)
+    {
+        lastValue += (expString.at(i));
+    }
+    return lastValue;
+}
 
 void MainWindow::on_dotButt_released()
 {
-    ui->expLine->insert(".");
+    readInput();
+    if (!isFirstSymbol() and symbolCanPePlaced() and !valueHasDot(getLastValue()))
+    {
+        ui->expLine->insert(".");
+    }
     ui->dotFrame->setStyleSheet(defaultFrameStyle);
 }
 
