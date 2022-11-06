@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Лабораторная работа 10</title>
+</head>
+<body>
+
+<script>
+			var time = DateTime('2017-05-16 13:45')
+					.add(24,'hours')
+					.subtract(1,'months')
+					.add(3,'days')
+					.add(15,'minutes')
+					.add(2,"years")
+					.add(2,"years")
+			console.info(time.value)
+
+
+			function DateTime(value){
+					let [YYYY,MM,DD,HH,SS] = getDateTime(value)
+					let date = new Date(YYYY,MM,DD,HH,SS)
+					let result =  {
+							value: "",
+							add: function (value,unit){
+									getChecked(value,unit)
+									switch (unit){
+											case "years":
+													date.setFullYear(date.getFullYear()+value)
+													break
+											case "months":
+													date.setMonth(date.getMonth()+value)
+													break
+											case "days":
+													date.setDate(date.getDate()+value)
+													break
+											case "hours":
+													date.setHours(date.getHours()+value)
+													break
+											case "minutes":
+													date.setMinutes(date.getMinutes()+value)
+													break
+									}
+									getNewResult()
+									return this
+							},
+							subtract: function (value,unit){
+									getChecked(value,unit)
+									switch (unit){
+											case "years":
+													date.setFullYear(date.getFullYear()-value)
+													break
+											case "months":
+													date.setMonth(date.getMonth()-value)
+													break
+											case "days":
+													date.setDate(date.getDate()-value)
+													break
+											case "hours":
+													date.setHours(date.getHours()-value)
+													break
+											case "minutes":
+													date.setMinutes(date.getMinutes()-value)
+													break
+									}
+									getNewResult()
+									return this
+							}
+					}
+					getNewResult()
+					return result
+					function getDateTime(text){
+							//делю на 2 элемента
+							let dateArray = text.split(" ")
+							//отделяю дату
+							let [YYYY,MM,DD] = dateArray[0].split("-")
+							//отделяю время
+							let [HH,SS] = dateArray[1].split(":")
+							return [YYYY,MM,DD,HH,SS]
+					}
+
+					//Ошибка
+					function getChecked(value,unit) {
+							if (value < 0 || Cheker(unit)) {
+									throw TypeError
+							}
+							//проверка на cоответствие
+							function Cheker(unit) {
+									let units = ["years", "months", "days", "hours", "minutes"]
+									let result = true
+									units.forEach(element => {
+											if (element === unit) {
+													result = false
+											}
+									})
+									return result
+							}
+					}
+					function getNewResult(){
+						//перевожу в строку и обновляю результат
+							let [YYYY,MM,DD,HH,SS] = [date.getFullYear(),date.getMonth(),date.getDate(),date.getHours(),date.getMinutes()].map(element=>element.toString())
+							result.value = `${YYYY}-${MM.padStart(2,"0")}-${DD.padStart(2,"0")} ${HH.padStart(2,"0")}:${SS.padStart(2,"0")}`
+					}
+			}
+</script>
+</body>
+</html>

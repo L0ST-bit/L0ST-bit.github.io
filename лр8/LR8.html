@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Лабораторная работа 8</title>
+</head>
+<body>
+	<script>
+// Задание 1
+		console.info(sum(12,33))
+		console.info(sum(101,'17'))
+		function sum(a, b){
+				if (!isNaN(a) && !isNaN(b)){
+					return a-(-b)
+				}else{
+					return NaN
+				}
+			}
+	
+// Задание 2
+
+function isIntegers(ints){
+	for (i=0; i<ints.length;i++){
+			if (!Number.isInteger(ints[i])){
+					return false
+			}
+	}
+	return true
+}
+console.info(isValidTime(12,30))
+console.info(isValidTime(12,61))
+function isValidTime(hour,minute){
+		if (isIntegers(hour,minute)){
+				if ((0 <= hour && hour <= 23) && (0 <= minute && minute <= 59)){
+						return true
+				}
+		}
+		return false
+}
+
+//Задание 3
+console.info(addTime(08,30,30))
+console.info(addTime(23,59,31))
+		function z(num) {
+			return (num < 10) ? ('0' + num) : num;
+		}
+		function addTime(hour,minute,plusTime){
+			if (isIntegers(hour,minute,plusTime) && (0 <= hour && hour <= 23) && (0 <= minute && minute <= 59) && plusTime >=0){
+						// hourplusTime = plusTime.
+						var hourplusTime = Math.floor(((plusTime/60)%24))
+						let minuteplusTime = plusTime%60
+
+						let newHour = hour + hourplusTime
+						let newMinute = minute + minuteplusTime
+						if (newMinute>59) newHour++
+
+						newHour %= 24
+						newMinute %= 60
+
+						return z(newHour)+':'+z(newMinute);
+						}else{
+							return undefined
+					}
+			}
+
+
+</script>
+</body>

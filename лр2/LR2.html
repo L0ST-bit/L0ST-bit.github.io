@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="styleLR2.css" rel="stylesheet">
+	<title>Лабораторная работа 2</title>
+</head>
+
+<body style="margin: 0 10%;">
+	<h1>Лабораторная работа 2</h1>
+
+	<article id="z1">
+		<h2>Задание 1</h2>
+		
+		<ul>
+			<li class="list">1. пункт li</li>
+			<li class="list">2. пункт li</li>
+			<li class="list">3. пункт li</li>
+			<li class="list">4. пункт li</li>
+			<li class="list">5. пункт li</li>
+			<li class="list">6. пункт li</li>
+			<li class="list">7. пункт li</li>
+			<li class="list">8. пункт li</li>
+			<li class="list">9. пункт li</li>
+			<li class="list">10. пункт li</li>
+			
+		</ul>
+	</article>
+
+	<article id="z2">
+		<h2>Задание 2</h2>
+		<p>Повторите страницу по образцу 
+			(при наведении курсора мыши на любой элемент списка, текущий 
+			элемент окрашивается в зеленый цвет, а все элементы ниже кроме 
+			последнего - в красный)</p>
+		<ul>
+			<li class="list">1. пункт li</li>
+			<li class="list">2. пункт li</li>
+			<li class="list">3. пункт li</li>
+			<li class="list">4. пункт li</li>
+			<li class="list">5. пункт li</li>
+			<li class="list">6. пункт li</li>
+			<li class="list">7. пункт li</li>
+			<li class="list">8. пункт li</li>
+			<li class="list">9. пункт li</li>
+			<li class="list">10. пункт li</li>
+			
+		</ul>
+	</article>
+
+	<article id="z3">
+		<h2>Задание 3</h2>
+		<p>Сделайте селектор, который выберет все абзацы p> с классом test из дивов div> с классом hello.</p>
+		<div>
+			<p class="test"> test 1</p>
+			<p class="test"> test 2</p>
+			<p class="hello"> hello 3</p>
+		</div>
+		<div class="hello">
+			<p class="test"> hello test 1</p>
+			<p class="test"> hello test 2</p>
+			<p class="hello"> hello hello 3</p>
+		</div>
+	</article>
+
+	<article id="z4">
+		<h2>Задание 4</h2>
+		<p>Сделайте селектор, который выберет все абзацы <p> с классом test и одновременно все элементы с классом hello.</p>
+		<div>
+			<p class="test"> test 1</p>
+			<p class="test"> test 2</p>
+			<p class="Not"> Not 3</p>
+		</div>
+		<div class="hello">
+			<p class="test"> hello test 1</p>
+			<p class="test"> hello test 2</p>
+			<p class="hello"> hello hello 3</p>
+		</div>
+		<div class="Not">
+			<p class="Not"> Not Not 1</p>
+			
+		</div>
+	</article>
+	<article id="z5">
+		<h2>Задание 5</h2>
+		<p>Сделайте селектор, который выберет все a>, которые лежат непосредственно внутри p> и одновременно все a> с классом test.</p>
+		<p>
+			Здесь а> в p> <a>MRP</a>dfsdfjsdlkfsjd<a>GHY</a>dffsdfsdfsd
+			<a class="test">YYUY</a>jsddjhd<a class="hell">UUU</a>
+		</p>
+		<div> Здесь а> не в p> <a class="test">YYUY</a>jsddjhd<a class="hell">UUU</a></div>
+		
+	</article>
+
+	<article id="z6">
+		<h2>Задание 6</h2>
+		<p>Сделайте селектор, который выберет все i>, которые лежат непосредственно после b> из элемента с id=test.</p>
+		<p id="test">
+			<b>test</b> test <i>Это выбрет</i> test <b>Это не выберет</b>
+		</p>
+
+	</article>
+
+	<article id="z7">
+		<h2>Задание 7</h2>
+		<p>
+			Дан следующий код:
+	</p>
+	<ul>
+			<li>
+					<i>курсив</i>
+					<b>жирный</b>
+					<b><i>жирный курсив</i></b>
+			</li>
+			<li>
+					<i>курсив</i>
+					<b>жирный</b>
+					<b><i>жирный курсив</i></b>
+			</li>
+	</ul>
+	<p>
+			Покрасьте в красный цвет только те теги b,
+			которые являются непосредственными потомками тегов li.
+	</p>
+
+	</article>
+
+	<article id="z8">
+		<h2>Задание 8</h2>
+		<p>
+			Дан следующий код:
+	</p>
+	<h2 class="header">заголовок</h2>
+	<h2 class="header">заголовок</h2>
+	<h3 class="header">заголовок</h3>
+	<h3 class="header">заголовок</h3>
+	<p>
+			Покрасьте все h2 с классом header в красный цвет,
+			а все h3 с этим классом - в синий.
+	</p>
+	</article>
+
+	<article id="z9">
+		<h2>Задание 9</h2>
+		<p>Сделайте селектор, который выберет все абзацы p> идущие после h2> из элемента с id=test.</p>
+		<div id="test">
+			<p>абзац1</p>
+			<p>абзац2</p>
+			<h2>h2</h2>
+			<p>абзац3</p>
+			<p>абзац4</p>
+		</div>
+	</article>
+
+	<article id="z10">
+		<h2>Задание 10</h2>
+		<p>
+			Пример HTML для проверки:
+		</p>
+		<p><span><i>выберет</i></span></p>
+		<p><b><i>выберет</i></b></p>
+		<p><i>не выберет</i></p>
+	</article>
+
+	<article id="z11">
+		<h2>Задание 11</h2>
+		<p>Сделайте селектор, который выберет все абзацы p> с атрибутом title, в значении которого есть слово 'привет'.</p>
+		<p title="привет ой ой">привет</p>
+		<p title=" ой пока">пока</p>
+		<p title="ой привет ">привет</p>
+
+	</article>
+
+
+
+
+</body>

@@ -1,0 +1,134 @@
+:is(#r1, #r2, #r3, #r4, #r5, #r6):checked ~ .inner .slides {
+	transition: .4s;
+}
+
+#r1:checked ~ .inner .slides {
+	left: -10px;
+	/* transition: .4s; */
+}
+#r2:checked ~ .inner .slides {
+	left: -790px;
+	/* transition: .4s; */
+}
+#r3:checked ~ .inner .slides {
+	left: -1560px;
+	/* transition: .4s; */
+}
+#r4:checked ~ .inner .slides {
+	left: -2340px;
+	/* transition: .4s; */
+}
+#r5:checked ~ .inner .slides {
+	left: -3114px;
+	/* transition: .4s; */
+}
+#r6:checked ~ .inner .slides {
+	left: -3891px;
+	/* transition: .4s; */
+}
+
+.slider {
+	display: inline-block;
+	width: 1045px;
+}
+.slider .inner{
+	margin-top: 15px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+
+.slider .inner .slides {
+	white-space: nowrap;
+	position: relative;
+}
+
+.slider .inner .slides .item {
+	display: inline-block;
+	margin: 5px 0 5px 5px;
+	width: 250px;
+	position: relative;
+	vertical-align: top;
+
+}
+.slider .inner .slides .item .wrapper {
+	overflow: hidden;
+	padding: 10px;
+	background-color: white;
+
+}
+.slider .inner .slides .item:hover .wrapper{
+	z-index: 1;
+	position: fixed;
+	width: 320px;
+	font-size: 0.8em;
+	margin-left: -35px;
+	border: 2px solid red;
+}
+
+.slider .inner .slides .item:hover p{
+	display: block;
+}
+
+.slider .inner .slides .item img {
+	width: 100%;
+}
+.slider .inner .slides .item p {
+	white-space: normal;
+	text-align: justify;
+	display: none;
+}
+
+.slider .inner .slides input {
+	display: none;
+}
+.slider .inner .slides input[id*="img"]:checked + .item img {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	max-width: 80%;
+	max-height: 80%;
+}
+.slider .inner .slides input[id*="img"]:checked ~ .overlay-modal {
+	display: block;
+}
+.slider .inner .slides input[id*="img"]:checked ~ .item-close {
+	display: block;
+}
+.slider .inner .slides input[id*="img"]:checked ~ .item:hover .wrapper{
+	z-index: 1;
+	position: static;
+	width: inherit;
+	font-size: 14px;
+	margin-left: 0px;
+	box-shadow: none;
+}
+.slider .inner .slides input[id*="img"]:checked ~ .item:hover .wrapper p{
+	display: none;
+}
+
+
+.slider .inner .overlay-modal {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: black;
+	opacity: 0.7;
+}
+
+.slider .inner .item-close {
+	display: none;
+	position: fixed;
+	font-size: 5em;
+	left: 90%;
+	top: 1%;
+	color: white;
+	cursor: pointer;
+	z-index: 11;
+}

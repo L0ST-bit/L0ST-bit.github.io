@@ -1,0 +1,66 @@
+.list {
+	border: 1px solid rgb(75, 70, 131);
+	margin-top: 10px;
+	padding: 2px;
+	width: 180px;
+	list-style-type: none;
+}
+#z1 .list:hover {
+	background: green;
+	color: white;
+	border: green;
+}
+#z1 .list:hover+li+li {
+	background: red;
+	color: white;
+	border: red;
+}
+
+#z2 .list:hover {
+	background: green;
+	color: white;
+	border: green;
+}
+#z2 .list:hover ~ .list:nth-last-child(n+2) {
+	background: red;
+	color: white;
+	border: red;
+}
+
+#z3 div.hello p.test {
+	background-color: green;
+}
+
+#z4 p.test, .hello{
+	background-color: green;
+}
+
+#z5 p > a, a.test{
+	background-color: green;
+
+}
+#z6 #test b + i{
+	background-color: green;
+}
+
+#z7 li > b {
+	background-color: red;
+}
+
+#z8 h2.header{
+	color: red;
+}
+#z8 h3.header{
+	color: blue;
+}
+#z9 #test h2 ~ p{
+	background-color: green;
+}
+
+#z10 p > * > i{
+	background-color: green;
+}
+
+#z11 p[title*="привет"]{
+	background-color: green;
+}

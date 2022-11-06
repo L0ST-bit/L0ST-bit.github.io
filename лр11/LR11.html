@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Лабораторная работа 11</title>
+</head>
+<body>
+
+<script>
+    // Паттерн Наблюдатель
+    let emitter = {
+        subscribers: new Map(),
+        on: function (eventName,subscriber,handler){
+            if (!this.subscribers.has(eventName)){
+                this.subscribers.set(eventName,[])
+            }
+            let subscriberListOnEvent = this.subscribers.get(eventName)
+            subscriberListOnEvent.push([subscriber,handler])
+        },
+        off: function (eventName,subscriber){
+            if (!this.subscribers.has(eventName)) return
+            let subscriberListOnEvent = this.subscribers.get(eventName)
+            subscriberListOnEvent = subscriberListOnEvent.filter(subscriberItem=>{
+                subscriberItem[0] !== subscriber
+            })
+            if (subscriberListOnEvent.length === 0){
+                this.subscribers.delete(eventName)
+            }else{
+                this.subscribers.set(eventName,subscriberListOnEvent)
+            }
+        },
+        emit: function (eventName){
+            if (!this.subscribers.has(eventName)) return
+            let subscriberListOnEvent = this.subscribers.get(eventName)
+            subscriberListOnEvent.forEach(subscriberItem=>{
+                subscriberItem[1].bind(subscriberItem[0])()
+            })
+        }
+    }
+    // Пример
+    var notifications = {
+        counter: 0,
+        count: function (){
+            this.counter++
+        }
+    }
+
+    emitter.on('new_notification', notifications, notifications.count)
+    console.log(emitter.subscribers)
+
+    emitter.emit('new_notification')
+    emitter.emit('new_notification')
+    console.log(notifications.counter)
+</script>
+</body>
+</html>

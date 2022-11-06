@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Лабораторная работа 9</title>
+</head>
+<body>
+
+
+<script>
+			function checkRuLatHtSp(text){
+					let symbols = /^[a-zа-я# ]+$/i
+					return symbols.test(text)
+			}
+			function containsDoubleSpace(text){
+					let symbols = / {2} */i
+					return symbols.test(text)
+			}
+			// Задание 1
+
+			console.info(getHashTags('Прохожу курс по #javascript и #web'))
+			function getHashTags(text){
+					var result = []
+					if (checkRuLatHtSp(text) && !containsDoubleSpace(text)){
+							//для каждого параметра word строгая проверка на соотвестие символу
+							text.split(" ").forEach( word =>{
+									if (word[0] === '#') {
+										//вывод с удалением первого символа каждого word
+											result.push(word.slice(1))
+									}
+							})
+							return result
+					}else{
+							return undefined
+					}
+			}
+
+
+			// Задание 2
+			console.info(normalizeHashTags(['web','JavaScript','Web','script','programming']))
+			function normalizeHashTags(list){
+				//создаю конструктор Set который хранит уникальные элементы любого типа, где выполняю единоразово для каждого элемента списка функцию
+					let set = new Set(list.map(element=>element.toLowerCase()))
+					//создаю массив из set разделенный запятой
+					return Array.from(set).join(", ")
+			}
+			// Задание 3
+
+			let book = []
+
+			phoneBook('ADD Ivan 555-10-01,555-10-03')
+			phoneBook('ADD Ivan 555-10-02')
+			console.info(phoneBook('SHOW'))
+			phoneBook('REMOVE_PHONE 555-10-03')
+			phoneBook('ADD Alex 555-20-01')
+			console.info(phoneBook('SHOW'))
+			phoneBook('REMOVE_PHONE 555-20-01')
+			console.info(phoneBook('SHOW'))
+
+			function phoneBook(command){
+					let commandArray = command.split(" ")
+					let index = null
+					let action = commandArray[0]
+					let arg1 = commandArray[1]
+					let arg2 = commandArray.slice(2).join().split(",")
+					switch (action){
+							case "ADD":
+								//Получаю индекс пользователя если он уже есть в книге
+									let result = null
+									book.forEach ((element, result)=> {
+										if (element.includes(arg1)){
+											index = result
+										}
+									})
+									//убираю имя и номер если они уже записаны
+									if (index != null){
+											let removedUser = book[index]
+											//удаляю 1 элемент по индексу
+											book.splice(index,1)
+											//Разделяю строку на элементы, Удаляю 1 символ, заменяю запятую
+											let removedPhones = removedUser
+													.split(" ")
+													.slice(1)
+													.map(element=>element.replace(',',''))
+													//добаляю arg2 к массиву
+											arg2 = removedPhones.concat(arg2)
+									}
+									arg2 = arg2.join(", ")
+									//добавляю новое имя и номер
+									book.unshift(`${arg1}: ${arg2}`)
+									
+							case "REMOVE_PHONE":
+								let isRemoved = false
+								//для содержимого книги по одному разу проходит проверка на наличие имени
+								book = book.map(element=>{
+									if (element.includes(arg1)){
+											isRemoved = true
+											let userName = element.split(":")[0]
+											let phones = element.split(":")[1]
+											//Удаляю пробельные символы, разделяю на элементы, заменяю запятую
+											phones = phones
+													.trim()
+													.split(" ")
+													.map(element=>element
+															.replace(',','')
+													)
+													//Если не имя то разделяется запятой
+													.filter(element=>element !== arg1)
+													.join(", ")
+											return `${userName}: ${phones}`
+									}
+									return element
+							})
+							return isRemoved
+									
+							case "SHOW":
+									return book.filter(element => {
+											return element.includes('-')
+									})
+					}
+					throw "Unknown command"
+			}
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Восстановить доступ</title>
+		<link rel="stylesheet" href="styleProject1.css">
+	</head>
+	<body>
+
+		<div class="box">
+			<h3>Восстановить доступ</h3>
+			<form id="form" action="#">
+				<div class="inputBox">
+					<input type="text" required="required" id="email"  onkeyup="validate()">
+					<span id="mail">Введите почту</span>
+					<i></i>
+					<span id="text">  </span>
+					
+				</div>
+			</form>
+			<input type="submit" value="Отправить">
+		</div>
+		<script>
+			function validate(){
+				let form = document.getElementById('form');
+				let email = document.getElementById('email').value;
+				let text = document.getElementById('text');
+				let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+				if(email.match(pattern))
+				{
+					form.classList.add('valid');
+					form.classList.remove('invalid');
+					text.innerHTML = "Ваша почта введена верно!";
+					text.style.color = "#4caf50";
+				}
+				else{
+					form.classList.remove('valid');
+					form.classList.add('invalid');
+					text.innerHTML = "Ваша почта введена неверно!";
+				}
+				if(email == "")
+				{
+					form.classList.remove('valid');
+					form.classList.remove('invalid');
+					text.innerHTML = " "
+
+				}
+				
+
+
+			}
+		</script>
+
+	</body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Войти</title>
+		<link rel="stylesheet" href="styleProject.css">
+	</head>
+	<body>
+		<div class="box">
+			<div class="form">
+				<h2>Войти</h2>
+				<div class="inputBox">
+					<input type="text" name="user" required="required">
+					<span>Имя пользователя</span>
+					<i></i>
+				</div>
+				<div class="inputBox">
+					<input type="password" id="pass" required="required">
+					<span>Пароль</span>
+					<i></i>
+				</div>
+				<div class="links">
+				<a href="Project1.html">Восстановить доступ</a>
+				</div>
+
+				<button onclick="check()">Войти</button>
+
+			</div>
+		</div>
+		<script>
+			const pass = document.getElementById("pass")
+			
+			let password
+
+const beginNotDigit = /^\D.*$/
+const withoutSpecialChars = /^[^-() ]*$/
+const containсLetters = /^.*[a-zA-Z]+.*$/
+
+function check(){
+	password = pass.value;
+	
+  if( beginNotDigit.test(password) &&
+      withoutSpecialChars.test(password) &&
+      containсLetters.test(password) ){
+  	alert("Пароль не соответствует")
+  } else {
+  	alert("Пароль соответствует")
+  }
+}
+		</script>
+
+	</body>
+</html>

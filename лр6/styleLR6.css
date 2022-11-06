@@ -1,0 +1,277 @@
+/* body{
+	margin: 0 20px;
+	background-color: aliceblue;
+} */
+.main-wrapper{
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+main{
+	flex-grow: 1;
+	display: flex;
+	gap: 25px;
+	flex-wrap: wrap;
+
+}
+main > section {
+	flex-grow: 1;
+}
+/**/
+main .category{
+	flex-basis: 160px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+main input[name="category"] {
+	display: none;
+}
+main .category label {
+	display: inline-block;
+	padding: 15px;
+	text-align: center;
+	font-size: 14px;
+	border: red solid 1px;
+}
+/* main .category label:hover{
+	cursor: pointer;
+	background-color: darkgray;
+}
+main .category input:checked + label{
+	background-color: darkgray;
+} */
+
+/* Замыление */
+#c-MeinKoon:checked ~ .items > div:not(.MeinKoon){
+	opacity: 0.5;
+}
+#c-Vislouh:checked ~ .items > div:not(.Vislouh){
+	opacity: 0.5;
+}
+#c-Persidskii:checked ~ .items > div:not(.Persidskii){
+	opacity: 0.5;
+}
+#c-Kitaiskii:checked ~ .items > div:not(.Kitaiskii){
+	opacity: 0.5;
+}
+
+
+
+/*Флекс ячейки*/
+main .items{
+	flex-grow: 1;
+	display: flex;
+	flex-basis: 40%;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+/* Расположение */
+main .items > div:nth-child(8n-7){
+
+	flex-basis: calc(33.3% - 7px);
+
+}
+main .items > div:nth-child(8n-6){
+
+	flex-basis: calc(66.6% - 3px);
+
+}
+
+main .items > div:nth-child(8n-5){
+	flex-basis: calc(33.3% - 7px);
+}
+main .items > div:nth-child(8n-4){
+	flex-basis: calc(33.3% - 7px);
+}
+main .items > div:nth-child(8n-3){
+	flex-basis: calc(33.3% - 6px);
+}
+
+main .items > div:nth-child(8n-2){
+	flex-basis: calc(66.6% - 3px);
+
+}
+main .items > div:nth-child(8n-1){
+	flex-basis: calc(33.3% - 7px);
+}
+
+main .items > div:nth-child(8n){
+	flex-basis: 100%;
+}
+
+main .items > div img{
+	width: 100%;
+	height: 100%;
+	
+}
+/* Описание */
+main .items > div p{
+	display: none;
+	position: absolute;
+	background-color: black;
+	opacity: 0.8;
+	color: white;
+	padding: 20px;
+	border-radius: 25px;
+}
+main .items > div:hover p{
+	display: block;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#c-Vislouh:checked ~ .items > div:not(.MeinKoon):hover p{
+	display:none;
+}
+#c-Vislouh:checked ~ .items > div:not(.Vislouh):hover p{
+	display:none;
+}
+#c-Persidskii:checked ~ .items > div:not(.Persidskii):hover p{
+	display:none;
+}
+#c-Kitaiskii:checked ~ .items > div:not(.Kitaiskii):hover p{
+	display:none;
+}
+
+
+
+
+
+
+/* Рейтинг */
+main .rating{
+	flex-basis: 200px;
+	align-self: flex-start;
+	padding: 40px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	border: red solid 1px;
+}
+main .rating h1{
+	text-align: center;
+}
+main .rating .rating-list {
+	display: flex;
+	flex-direction: column;
+}
+main .rating .rating-list input {
+	display: none;
+}
+
+main .rating .rating-list .rating-item .scale{
+	width: 200px;
+	height: 20px;
+	margin-top: 6px;
+}
+main .rating .rating-list .rating-item .scale::after{
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 200px;
+}
+/* Цвет рейтинга*/
+
+main .rating .rating-list input[value="1"] + div .scale{
+	background-color: rgb(255, 0, 0);
+	width: 20px;
+}
+main .rating .rating-list input[value="1"] + div .scale::after{
+	content: '1';
+	color: rgb(255, 0, 0);
+}
+
+main .rating .rating-list input[value="2"] + div .scale{
+	background-color: #ff3c00;
+	width: 40px;
+}
+main .rating .rating-list input[value="2"] + div .scale::after{
+	content: '2';
+	color: #ff3c00;
+}
+
+main .rating .rating-list input[value="3"] + div .scale{
+	background-color: rgb(255, 157, 0);
+	width: 60px;
+}
+main .rating .rating-list input[value="3"] + div .scale::after{
+	content: '3';
+	color: rgb(255, 157, 0);
+}
+
+
+main .rating .rating-list input[value="4"] + div .scale{
+	background-color: rgb(242, 255, 0);
+	width: 80px;
+}
+main .rating .rating-list input[value="4"] + div .scale::after{
+	content: '4';
+	color: rgb(242, 255, 0);
+}
+
+main .rating .rating-list input[value="5"] + div .scale{
+	background-color: #00ff2f;
+	width: 100px;
+}
+main .rating .rating-list input[value="5"] + div .scale::after{
+	content: '5';
+	color: #00ff2f;
+}
+
+main .rating .rating-list input[value="6"] + div .scale{
+	background-color: #00ffc4;
+	width: 120px;
+}
+main .rating .rating-list input[value="6"] + div .scale::after{
+	content: '6';
+	color: #00ffc4;
+}
+
+main .rating .rating-list input[value="7"] + div .scale{
+	background-color: #00c8ff;
+	width: 140px;
+}
+main .rating .rating-list input[value="7"] + div .scale::after{
+	content: '7';
+	color: #00c8ff;
+}
+
+main .rating .rating-list input[value="8"] + div .scale{
+	background-color: #00308f;
+	width: 160px;
+}
+main .rating .rating-list input[value="8"] + div .scale::after{
+	content: '8';
+	color: #00308f;
+}
+
+	/* Сортировка*/
+
+#desc:checked ~ .rating-list input[value="8"] + .rating-item {
+	order: 1;
+}
+#desc:checked ~ .rating-list input[value="7"] + .rating-item {
+	order: 2;
+}
+#desc:checked ~ .rating-list input[value="6"] + .rating-item {
+	order: 3;
+}
+#desc:checked ~ .rating-list input[value="5"] + .rating-item {
+	order: 4;
+}
+#desc:checked ~ .rating-list input[value="4"] + .rating-item {
+	order: 5;
+}
+#desc:checked ~ .rating-list input[value="3"] + .rating-item {
+	order: 6;
+}
+#desc:checked ~ .rating-list input[value="2"] + .rating-item {
+	order: 7;
+}
+#desc:checked ~ .rating-list input[value="1"] + .rating-item {
+	order: 8;
+}
+
