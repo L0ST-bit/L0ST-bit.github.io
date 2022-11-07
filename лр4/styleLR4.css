@@ -87,8 +87,6 @@
 .product-card__description {
 	margin: 0 20px;
 }
-
-
 /* Рейтинг товара */
 .product-card__rating {
 	overflow: hidden;
@@ -108,6 +106,7 @@
 	color: darkgrey;
 	
 }
+
 .product-card__rating:not(:checked) > label:before {
 	content: '★';
 }
