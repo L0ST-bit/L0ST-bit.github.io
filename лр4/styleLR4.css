@@ -40,6 +40,7 @@
 }
 .product-card__img img:hover{
 	transform: scale(1.05);
+	opacity: 0.7;
 }
 /* Блок сведений*/
 .product-card__wrapper{
@@ -63,6 +64,10 @@
 	font-weight: bold;
 	color: blueviolet;
 }
+.product-card__title a:hover{
+	color: red;
+
+}
 
 .product-card__category {
 	vertical-align: top;
@@ -82,6 +87,8 @@
 .product-card__description {
 	margin: 0 20px;
 }
+
+
 /* Рейтинг товара */
 .product-card__rating {
 	overflow: hidden;
@@ -101,7 +108,6 @@
 	color: darkgrey;
 	
 }
-
 .product-card__rating:not(:checked) > label:before {
 	content: '★';
 }
